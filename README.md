@@ -5,6 +5,7 @@ the future I plan to expand this part and write a mobile application that will u
 ### Technologies used 
 * Python 3.10
 * Django
+* DjangoRestApi
 * Bootstrap
 ### Instalation
 * copy repo
