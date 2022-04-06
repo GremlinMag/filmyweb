@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+{% block tytul %} Film form {% endblock %}
+
+{% block strona %}
+<div class="card" >
+  <div class="card-body">
+      <img src="/media/{{film.plakat}}" class="film-plakat">
+      <div class="row">
+          <div class="col-9">
+              <h5 class="card-title">{{ film }}</h5>
+          </div>
+      </div>
+      <div class="row">
+        <p class="card-text">{{ film.opis }}</p>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+
+
+<div class="card">
+  <div class="card-body">
+      <h5 class="card-title">Oceny:</h5>
+      {% for ocena in oceny %}
+        <h6 class="card-subtitle mb-2 text-muted">Gwiazdki: {{ocena.gwiazdki}}</h6>
+        <p class="card-text">{{ocena.recenzja}}</p>
+      {% endfor %}
+  </div>
+</div>
+</div>
+<div class="col">
+<div class="card">
+  <div class="card-body">
+      <h5 class="card-title">Aktorzy:</h5>
+      {% for aktor in aktorzy %}
+        <p class="card-text">{{aktor.imie}} {{aktor.nazwisko}}</p>
+      {% endfor %}
+  </div>
+</div>
+</div>
+</div>
+<div class="list-group">
+  <a href="{% url 'edytuj_film' film.id %}" class="list-group-item list-group-item-secondary">Edytuj</a>
+  <a href="{% url 'usun_film' film.id %}" class="list-group-item list-group-item-secondary">usuń</a>
+  <a href="{% url 'filmy' %}" class="list-group-item list-group-item-dark">Powrót do listy</a>
+</div>
+
+{% endblock %}

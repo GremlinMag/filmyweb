@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% load bootstrap %}
+{% block tytul %} Film form {% endblock %}
+
+{% block strona %}
+<div class="row">
+    <div class="col-6">
+      <div class="card" style="margin-right: 0.5rem">
+  <div class="card-body">
+      {% if nowy %}
+        <h5 class="card-title">Nowy film</h5>
+      {% else %}
+        <h5 class="card-title">Edytuj film</h5>
+      {% endif %}
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        {{ form_dodatkowe|bootstrap }}
+          {% if nowy %}
+            <button type="submit" class="btn btn-dark">Dodaj film</button>
+          {% else %}
+            <button type="submit" class="btn btn-dark">Zapisz zmiany</button>
+          {% endif %}
+      </form>
+  </div>
+</div>
+</div>
+    {% if not nowy %}
+
+
+<div class="col-6">
+        <div class="card">
+  <div class="card-body">
+        <h5 class="card-title">Dodaj ocenę</h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_ocena|bootstrap }}
+            <button type="submit" class="btn btn-dark">Dodaj ocenę</button>
+      </form>
+  </div>
+</div>
+<div class="card" style="margin-top: 0.7rem">
+  <div class="card-body">
+        <h5 class="card-title">Dodaj Aktora</h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_aktor|bootstrap }}
+            <button type="submit" class="btn btn-dark">Dodaj Aktora</button>
+      </form>
+  </div>
+
+</div>
+    </div>
+    {% endif %}
+    <a href="{% url 'filmy' %}" class="btn btn-dark" style=" margin-top: 10px;">Powrót do listy</a>
+  </div>
+
+{% endblock %}
